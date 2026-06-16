@@ -1,15 +1,20 @@
 import java.util.Scanner;
 
 public class rechnerJuni {
+    static Scanner s = new Scanner(System.in);
+    
+    private static double getZahl(String order) {
+        System.out.println("Gib eine " + order + " Zahl ein ");
+        double zahl = s.nextDouble();
+        return zahl;
+    
+    }
+    
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
         boolean isOperator = true;
-
-        System.out.println("Gib eine erste Zahl ein ");
-        double zahl1 = s.nextDouble();
-
-        System.out.println("Gib eine zweite Zahl ein ");
-        double zahl2 = s.nextDouble();
+    
+        double zahl1 = getZahl("erste");
+        double zahl2 = getZahl("zweite");
 
         double resultat = 0;
 
@@ -26,8 +31,14 @@ public class rechnerJuni {
                     resultat = zahl1 - zahl2;
                     break;       
                 case ":":
+                    if (zahl2 == 0) {
+                        System.out.println("Du darfst nicht duch 0 rechnen!");
+                        do {
+                            zahl2 = getZahl("neue zweite");
+                        } while (zahl2 == 0);
+                    }
                     resultat = zahl1 / zahl2;
-                    break;   
+                    break;
                 case "*":
                     resultat = zahl1 * zahl2;
                     break;  
@@ -45,3 +56,4 @@ public class rechnerJuni {
   
     }
 }
+
